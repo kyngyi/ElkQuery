@@ -1,8 +1,8 @@
 import pandas as pd
-import elasticRequest
+import ElasticRequest
 import elasticsearch
 import json
-import exceptions
+import Exceptions
 import dateutil.parser
 import datetime
 import DataFormatter
@@ -40,7 +40,7 @@ def get_data(keyword, keyword2):
     #     return displayTable
 
     print("Sendrequest Module Initiated")
-    requestHandler = elasticRequest.elasticRequest('http://10.2.5.21:9200')
+    requestHandler = ElasticRequest.elasticRequest('http://10.2.5.21:9200')
     r = 0
     try:
         requestHandler.add_search_term(keyword)
@@ -52,7 +52,7 @@ def get_data(keyword, keyword2):
     # Checking for any search results
     if (r['hits']['total'] == 0):
         print("No Hits!")
-        raise exceptions.noDataFoundError
+        raise Exceptions.noDataFoundError
         return
     print("Finished log extraction from ELK")
     # Generate dataframe based on contents of r

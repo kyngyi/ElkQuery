@@ -1,11 +1,11 @@
 from tkinter import *
 from tkinter import messagebox
 import elasticsearch.exceptions
-import exceptions
+import Exceptions
 from pandastable import Table
-import dropCalendar
-import advSearchWindow
-import elasticRequest
+import DropCalendar
+import AdvSearchWindow
+import ElasticRequest
 import DataFormatter
 
 
@@ -31,13 +31,13 @@ class Window(Frame):
             topframe = Toplevel()
             topframe.geometry(root_settings(topframe))
             topframe.title('Advanced Search')
-            advSearchWindow.AdvSearchWindow(topframe)
+            AdvSearchWindow.AdvSearchWindow(topframe)
 
         def click():
             print("Event Triggered")
 
             # Initialise elasticsearch request handler passing Elasticsearch Address
-            requestHandler = elasticRequest.elasticRequest('http://10.2.5.21:9200')
+            requestHandler = ElasticRequest.elasticRequest('http://10.2.5.21:9200')
 
             requestHandler.add_search_term(entry_box.get())
             try:
@@ -46,7 +46,7 @@ class Window(Frame):
                 print("Exception Catched!")
                 messagebox.showerror("Error", "Connection Error, Unable to connect to server")
                 return
-            except exceptions.noDataFoundError:
+            except Exceptions.noDataFoundError:
                 print("No search results found!")
                 messagebox.showerror("Error", "No Results found!")
                 return

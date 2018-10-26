@@ -1,9 +1,9 @@
-import dropCalendar
+import DropCalendar
 import tkinter
 from tkinter import messagebox
-import elasticRequest
+import ElasticRequest
 import elasticsearch
-import exceptions
+import Exceptions
 import DataFormatter
 import pandastable
 import StaticValues
@@ -30,7 +30,7 @@ class AdvSearchWindow():
 
             # Initialise elasticsearch request handler passing Elasticsearch Address
             a = StaticValues.StaticValues()
-            requestHandler = elasticRequest.elasticRequest(a.get_elasticsearch_server())
+            requestHandler = ElasticRequest.elasticRequest(a.get_elasticsearch_server())
 
             # Check if queries are empty else add the queries to request body
             if self.check_if_empty(entry_box1.get(), entry_box2.get(), entry_box3.get(), entry_box4.get()):
@@ -70,7 +70,7 @@ class AdvSearchWindow():
                 print("Exception Caught!")
                 messagebox.showerror("Error", "Connection Error, Unable to connect to server")
                 return
-            except exceptions.noDataFoundError:
+            except Exceptions.noDataFoundError:
                 print("No search results found!")
                 messagebox.showerror("Error", "No Results found!")
                 return
@@ -83,10 +83,10 @@ class AdvSearchWindow():
             to_display = data_formatter.get_display()
             self.generate_table(to_display)
 
-        datepicker1 = dropCalendar.Datepicker(self.frame)
+        datepicker1 = DropCalendar.Datepicker(self.frame)
         datepicker1.place(x=520, y=38)
 
-        datepicker2 = dropCalendar.Datepicker(self.frame)
+        datepicker2 = DropCalendar.Datepicker(self.frame)
         datepicker2.place(x=520, y=85)
 
         datetext1 = tkinter.Label(self.frame, text="Date Range")

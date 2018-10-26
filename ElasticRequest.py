@@ -1,5 +1,5 @@
 from elasticsearch import Elasticsearch
-import exceptions
+import Exceptions
 import StaticValues
 
 
@@ -43,7 +43,7 @@ class elasticRequest():
         res = self.es.search(index="_all", body=self.search_body)
         if res['hits']['total'] == 0:
             print("No Hits!")
-            raise exceptions.noDataFoundError
+            raise Exceptions.noDataFoundError
             return
         return res
 
